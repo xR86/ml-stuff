@@ -1,0 +1,3 @@
+
+#Ignore Jupyter metadata
+jupyter-intro/.ipynb_checkpoints/*

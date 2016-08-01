@@ -1,3 +1,4 @@
 
 #Ignore Jupyter metadata
 jupyter-intro/.ipynb_checkpoints/*
+ml-intro/.ipynb_checkpoints/*

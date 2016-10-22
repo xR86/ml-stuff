@@ -2,3 +2,12 @@
 #Ignore Jupyter metadata
 jupyter-intro/.ipynb_checkpoints/*
 ml-intro/.ipynb_checkpoints/*
+
+#labs-AI
+  #lab1
+labs-AI/lab1/aiml/*
+!labs-AI/lab1/aiml/lab1-chat.aiml
+
+  #lab2
+labs-AI/lab2/.idea/*
+labs-AI/lab2/__pycache__/*

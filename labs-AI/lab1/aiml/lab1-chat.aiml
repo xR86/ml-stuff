@@ -1,0 +1,84 @@
+<aiml version="1.0.1" encoding="UTF-8">
+
+
+<!-- General responses -->
+<category>
+	<pattern>HELLO</pattern>
+	<template>
+		<random>
+			<li>Hi !</li>
+			<li>Hello there !</li>
+			<li>Hello <get name="name"/>.How are you doing ?</li>
+		</random>
+	</template>
+</category>
+
+<category>
+	<pattern>Yes</pattern>
+	<that>Hello <get name="name"/>.How are you doing ?</li>
+	<template>
+		<condition name="age" value = "21">Good. Now go to study !</condition>
+	</template>
+</category>
+
+<category>
+	<pattern>WHAT ARE YOU</pattern>
+	<template>
+		A bot, maybe ?
+	</template>
+</category>
+
+<category>
+	<pattern> * </pattern>
+	<template>
+		<random>
+			<li>Sorry, i don't understand that.</li>
+			<li>I don't quite understand. Can you rephrase that ?</li>
+			<li>I'm just a bot with some preprogrammed responses, please have some mercy.</li>
+		</random>
+	</template>
+</category>
+
+
+<!-- Setting predicate through AIML  -->
+<category>
+	<pattern>I STUDY AT *</pattern>
+	<template>
+		Hmm ... interesting that you study at <set name="faculty"><star/></set>
+	</template>
+</category> 
+
+<category>
+	<pattern>WHERE DO I STUDY *</pattern>
+	<template>
+		You study at <get name="faculty"/>
+	</template>
+</category>
+
+<category>
+	<pattern>WHAT IS MY NAME</pattern>
+	<template>
+		<random>
+			<li>If i recall correctly, your name is <get name="name"/></li>
+			<li>Your name is <get name="name"/></li>
+		</random>
+	</template>
+</category>
+
+<!-- Specific responses -->
+<category>
+	<pattern>WHAT IS MY AGE *</pattern>
+	<template>
+		Your age is <get name="age"/>
+	</template>
+</category>
+<!--
+<pattern> what boot movies</pattern
+<template> do you like comedy movies</template>
+
+<pattern>yes</pattern>
+<that>do you like comedy movies</that>
+-->
+
+
+</aiml>

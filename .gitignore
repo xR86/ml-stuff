@@ -1,13 +1,14 @@
 
 #Ignore Jupyter metadata
-jupyter-intro/.ipynb_checkpoints/*
-ml-intro/.ipynb_checkpoints/*
+intro-jupyter/.ipynb_checkpoints/*
+intro-ml/.ipynb_checkpoints/*
+labs-python/.ipynb_checkpoints/*
 
 #labs-AI
   #lab1
-labs-AI/lab1/aiml/*
-!labs-AI/lab1/aiml/lab1-chat.aiml
+labs-AI/hw-lab1/aiml/*
+!labs-AI/hw-lab1/aiml/lab1-chat.aiml
 
   #lab2
-labs-AI/lab2/.idea/*
-labs-AI/lab2/__pycache__/*
+labs-AI/hw-lab3/.idea/*
+labs-AI/hw-lab3/__pycache__/*

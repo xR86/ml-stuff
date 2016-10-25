@@ -12,3 +12,9 @@ labs-AI/hw-lab1/aiml/*
   #lab2
 labs-AI/hw-lab3/.idea/*
 labs-AI/hw-lab3/__pycache__/*
+
+#labs-neural-networks
+labs-neural-networks/hw-lab4/.idea/*
+
+#labs-python
+labs-python/py-extra-del.ipynb

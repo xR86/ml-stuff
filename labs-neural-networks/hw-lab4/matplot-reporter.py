@@ -25,7 +25,7 @@ def animate(i):
         if len(eachLine) > 1:
             x, y = eachLine.split(',')
             xList.append(int(x))
-            yList.append(int(y))
+            yList.append(float(y))
 
     a.clear()
     a.plot(xList, yList)

@@ -15,6 +15,8 @@ labs-AI/hw-lab3/__pycache__/*
 
 #labs-neural-networks
 labs-neural-networks/hw-lab4/.idea/*
+labs-neural-networks/hw-lab4/diff.txt
+labs-neural-networks/hw-lab4/alt-refactor.py
 
 #labs-python
 labs-python/py-extra-del.ipynb

@@ -1,16 +1,20 @@
 import cPickle, gzip, numpy as np
 
+
+# semi-functional
+
+
 #py 3
 # u = pickle._Unpickler(f)
 # train_set, valid_set, test_set = u.load()
 f = gzip.open('mnist.pkl.gz', 'rb')
-f2 = open('matplot-text.txt', 'w+')
+#f2 = open('matplot-text.txt', 'w+')
 
 train_set, valid_set, test_set = cPickle.load(f)
 f.close()
 
 print 'train_set length: ', len(train_set[0])
-perceptron_layer = []
+# perceptron_layer = []
 
 epochs = 1
 learning_rate = 0.1
@@ -20,61 +24,44 @@ class Perceptron_Net(object):
         self.weight = weight
         self.bias = bias
         self.layer = []
-        self.ok_rate = 0
-        self.error_rate = 0
 
     def init_layer(self):
-        for i in range(10):
+        print "Initializing layer ",
+        for j in range(10):
             # print [numpy.random.uniform(0, 1, size=784) for i in range(10)]
             # print len(train_set[0])
             # shapes (50000,) and (784,) not aligned: 50000 (dim 0) != 784 (dim 0) => np.random.rand(1, len(train_set[0]))
-            self.layer.append(Perceptron(i))
+            self.layer.append(Perceptron(j))
 
         # check for initialization
-        for perceptron in self.layer:
-            print perceptron, perceptron.digit  # , i.weight, i.bias
+        for i in self.layer:
+            print i, i.digit  # , i.weight, i.bias
 
     def train_network(self):
+        # for i in self.layers_no:
         for perceptron in self.layer:
-            print 'queued train: ', perceptron.digit
+            print '#### NN trains: ', perceptron.digit
             perceptron.train()
 
     def test(self):
         self.train_network()
         ok = 0
-        clock_counter = 0
         for i in range(len(test_set[0])):
             maximum = -1
-            digitmax = -1
+            cifmax = -1
             for digit in range(10):
-                z = np.dot(test_set[0][i], self.weight[digit]) + self.bias[digit]
+                z = np.dot(test_set[0][i], self.weight[digit]) + self.weight[digit]
                 if z > maximum:
                     maximum = z
-                    digitmax = digit
-            if digitmax == test_set[1][i]:
+                    cifmax = digit
+            if cifmax == test_set[1][i]:
                 ok += 1
-            self.ok_rate = ok * 1.0 / len(test_set[0]) * 100
-            self.error_rate = 100 - self.ok_rate
-
-            str = "%d, %f" % (clock_counter, self.error_rate)
-            print "clock, error: ", str
-            print clock_counter, self.error_rate
-            f2.write(str + "\n")
-            clock_counter += 10
-
-        #self.ok_rate = ok * 1.0 / len(test_set[0]) * 100
-        #self.error_rate = 100 - self.ok_rate
-        self.error_rate = 100 - (ok * 1.0 / len(test_set[0]) * 100)
-        self.ok_rate = ok * 1.0 / len(test_set[0]) * 100
-        print "Final result: ", self.ok_rate, "%"
-        print "Error rate: ", self.error_rate, "%"
-
-        f2.close
+        print(ok)
+        print(ok * 1.0 / len(test_set[0]) * 100)
 
 class Perceptron(object):
-
-    #error = 1
-    #errorRate = 100 - perceptron_net.ok_rate
+    error = 1
+    #errorRate = error * 100 # ?????
 
     def __init__(self, digit):
         self.digit = digit
@@ -126,14 +113,14 @@ class Perceptron(object):
         #f2.close
         '''
 
-        print("###Train digit: " + str(self.digit))
+        print("Start of training for digit " + str(self.digit))
         for i in range(len(train_set[0])):
             z = np.dot(train_set[0][i], perceptron_net.weight[self.digit]) + perceptron_net.bias[self.digit]
             output = self.activation(z)
             x = np.array(train_set[0][i]).dot((self.expected(train_set[1][i]) - output) * learning_rate)
             perceptron_net.weight[self.digit] = np.add(perceptron_net.weight[self.digit], x)
             perceptron_net.bias[self.digit] += (self.expected(train_set[1][i]) - output) * learning_rate
-        print("---Digit trained: " + str(self.digit))
+        print("End of training for digit " + str(self.digit))
 
 
 
@@ -143,4 +130,7 @@ perceptron_net = Perceptron_Net([np.random.uniform(0, 1, size=784) for i in rang
 perceptron_net.init_layer()
 perceptron_net.train_network()
 perceptron_net.test()
+
+
+
 

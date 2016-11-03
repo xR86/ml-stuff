@@ -1,8 +1,7 @@
 
-#Ignore Jupyter metadata
-intro-jupyter/.ipynb_checkpoints/*
-intro-ml/.ipynb_checkpoints/*
-labs-python/.ipynb_checkpoints/*
+#Ignore Jupyter and Pycharms metadata
+**/.ipynb_checkpoints/*
+**/.idea/*
 
 #labs-AI
   #lab1
@@ -10,14 +9,13 @@ labs-AI/hw-lab1/aiml/*
 !labs-AI/hw-lab1/aiml/lab1-chat.aiml
 
   #lab2
-labs-AI/hw-lab3/.idea/*
 labs-AI/hw-lab3/__pycache__/*
 
 #labs-neural-networks
-labs-neural-networks/hw-lab4/.idea/*
+
 labs-neural-networks/hw-lab4/diff.txt
 labs-neural-networks/hw-lab4/alt-refactor.py
 
 #labs-python
 labs-python/py-extra-del.ipynb
-labs-python/test/.idea/*
+labs-python/lab5/*

@@ -1,3 +1,9 @@
+'''
+Visualizer for CMU 2009 ZBJ HW1.pr4 data
+http://profs.info.uaic.ro/~ciortuz/ML.ex-book/implementation-exercises/CMU.2009s.ZBJ.HW1.pr4.linRegr.insulin.data.NO-code/
+
+'''
+
 import matplotlib
 matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
@@ -21,6 +27,8 @@ def animate(i):
     dataList = pullData.split('\n')
     xList = []
     yList = []
+    x2List = []
+    y2List = []
     data_typeList = []
     for eachLine in dataList:
         if len(eachLine) > 1:
@@ -30,8 +38,11 @@ def animate(i):
             data_typeList.append(int(data_type))
 
     a.clear()
+    index_change = data_typeList.index(2) #find training data index
     # a.plot(xList, yList)
-    a.scatter(xList, yList)
+    #a.scatter(xList, yList, c="#FF0000")
+    a.scatter(xList[:index_change], yList[:index_change], c="#FF0000")
+    a.scatter(xList[index_change:], yList[index_change:], c="#0000FF")
 
     
             
@@ -69,8 +80,22 @@ class PageThree(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        #label = tk.Label(self, text="Data visualizer", font=LARGE_FONT)
-        #label.pack(pady=10,padx=10)
+        label = tk.Label(self, text="Red = train\nBlue = test", font=LARGE_FONT)
+        label.pack(pady=10,padx=10,side=tk.RIGHT)
+
+        '''
+        check_button_train_var = tk.IntVar()
+        check_button_train = tk.Checkbutton(self, text="Show Train Data", variable=check_button_train_var, \
+                            onvalue=1, offvalue=0, height=5, \
+                            width=20)
+        check_button_train.pack(side = tk.RIGHT) # pady=5, padx=5,
+
+        check_button_test_var = tk.IntVar()
+        check_button_test = tk.Checkbutton(self, text="Show Test Data", variable=check_button_test_var, \
+                                            onvalue=1, offvalue=0, height=5, \
+                                            width=20)
+        check_button_test.pack(side=tk.RIGHT)
+        '''
 
         canvas = FigureCanvasTkAgg(f, self)
         canvas.show()

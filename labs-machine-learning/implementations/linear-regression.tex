@@ -1,0 +1,78 @@
+\documentclass[10pt]{beamer}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\title{Linear Regression}
+\subtitle{A soft introduction - Part 1}
+% \date{\today}
+\date{}
+\author{Dan Alexandru}
+%\institute{FII}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Table of contents}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{Introduction}
+
+\section{Implementation}
+
+\begin{frame}{Sample data}
+%url: http://profs.info.uaic.ro/~ciortuz/ML.ex-book/implementation-exercises/ML.ex-book.Companion.pdf - slide 7
+%url: http://profs.info.uaic.ro/~ciortuz/ML.ex-book/implementation-exercises/CMU.2009s.ZBJ.HW1.pr4.linRegr.insulin.data.NO-code/data2.txt
+ \begin{table}
+    \caption{Insulin data (source: CMU, 2009, ZBJ - HW1 pr4)\break
+    For ease, weightage will be the indicator for train/test data.}
+    \begin{tabular}{lcr}
+      \toprule
+      bloodsugarlevel & insulindose & weightage\\
+      \midrule
+      30,000000 & 1335,000026 & 1\\
+      31,000000 & 1421,670027 & 1\\
+      34,500000 & 1909,320033 & 2\\
+      35,250000 & 2007,750035 & 2\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+\begin{frame}{Visualizing the data}
+  \begin{center}\includegraphics[scale=0.5]{linear-reg01.png}\end{center}
+\end{frame}
+
+\begin{frame}{Visualizing the solution}
+  \begin{center}\includegraphics[scale=0.5]{linear-reg02.png}\end{center}
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}{Summary}
+
+  Get the source of this theme and the demo presentation from
+
+  \begin{center}\url{github.com/xR86/ml-stuff/tree/master/labs-machine-learning/implementations}\end{center}
+
+  The repo is licensed under a
+  \href{https://github.com/xR86/ml-stuff/blob/master/LICENSE}{MIT License}.
+
+  \begin{center}\includegraphics[scale=0.5]{mitlogo.png}\end{center}
+  
+
+\end{frame}
+
+\end{document}

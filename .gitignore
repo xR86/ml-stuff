@@ -15,6 +15,10 @@ labs-AI/hw-lab3/__pycache__/*
 
 labs-neural-networks/hw-lab4/diff.txt
 labs-neural-networks/hw-lab4/alt-refactor.py
+labs-neural-networks/hw-lab6/mnist.pkl.gz
+labs-neural-networks/hw-lab6/matplot-reporter.py
+labs-neural-networks/hw-lab6/matplot-text.txt
+
 
 #labs-python
 labs-python/py-extra-del.ipynb

@@ -9,26 +9,25 @@ matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 from matplotlib.figure import Figure
 import matplotlib.animation as animation
-from matplotlib import style
+#from matplotlib import style
 
 import Tkinter as tk
 import ttk
 
 
 LARGE_FONT= ("Verdana", 12)
-style.use("ggplot")
+#style.use("ggplot")
 
 f = Figure(figsize=(5,5), dpi=100)
 a = f.add_subplot(111)
 
 
 def animate(i):
-    pullData = open("matplot-text.txt","r").read()
+    fd = open("matplot-text.txt","r")
+    pullData = fd.read()
     dataList = pullData.split('\n')
     xList = []
     yList = []
-    x2List = []
-    y2List = []
     data_typeList = []
     for eachLine in dataList:
         if len(eachLine) > 1:
@@ -36,6 +35,20 @@ def animate(i):
             xList.append(float(x))
             yList.append(float(y))
             data_typeList.append(int(data_type))
+    fd.close()
+    
+    fd2 = open("matplot-output.txt","r")
+    pullData = fd2.read()
+    dataList = pullData.split('\n')
+
+    x2List = []
+    y2List = []
+    for eachLine in dataList:
+        if len(eachLine) > 1:
+            x, y = eachLine.split(' ')
+            x2List.append(float(x))
+            y2List.append(float(y))
+
 
     a.clear()
     index_change = data_typeList.index(2) #find training data index
@@ -43,6 +56,7 @@ def animate(i):
     #a.scatter(xList, yList, c="#FF0000")
     a.scatter(xList[:index_change], yList[:index_change], c="#FF0000")
     a.scatter(xList[index_change:], yList[index_change:], c="#0000FF")
+    a.plot(x2List, y2List, c="#00FF00")
 
     
             

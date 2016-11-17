@@ -2,17 +2,20 @@
 #Ignore Jupyter and Pycharms metadata
 **/.ipynb_checkpoints/*
 **/.idea/*
+**/__pycache__/*
 
 #labs-AI
   #lab1
 labs-AI/hw-lab1/aiml/*
 !labs-AI/hw-lab1/aiml/lab1-chat.aiml
+labs-AI/hw-lab7/*.zip
+labs-AI/hw-lab7/stanford-corenlp/*
 
-  #lab2
-labs-AI/hw-lab3/__pycache__/*
+#labs-machine-learning
+labs-machine-learning/implementations/ID3-car*
+labs-machine-learning/implementations/ID3-data.txt
 
 #labs-neural-networks
-
 labs-neural-networks/hw-lab4/diff.txt
 labs-neural-networks/hw-lab4/alt-refactor.py
 labs-neural-networks/hw-lab6/mnist.pkl.gz

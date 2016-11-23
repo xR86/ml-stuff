@@ -12,8 +12,10 @@
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
+
+
 \title{Linear Regression}
-\subtitle{A soft introduction - Part 1}
+\subtitle{A soft introduction}
 % \date{\today}
 \date{}
 \author{Dan Alexandru}
@@ -30,6 +32,23 @@
 \end{frame}
 
 \section{Introduction}
+
+\begin{frame}{Linear regression}
+\begin{columns}[T,onlytextwidth]
+    \column{0.6\textwidth}
+     \begin{equation*}
+        y = X\beta+\varepsilon
+      \end{equation*}
+      
+        y = response variable (regressand) \\
+        X = input vector (regressor) \\
+        $\beta$ = \textasciitilde weight (regression coefficient)\\
+        $\varepsilon$ = \textasciitilde bias (disturbance or error term / noise) 
+
+  \column{0.5\textwidth}
+    \begin{center}\includegraphics[scale=0.3]{visualize/linear-example.png}\end{center}
+\end{columns}
+\end{frame}
 
 \section{Implementation}
 
@@ -52,18 +71,46 @@
   \end{table}
 \end{frame}
 \begin{frame}{Visualizing the data}
-  \begin{center}\includegraphics[scale=0.5]{linear-reg01.png}\end{center}
+  \begin{center}\includegraphics[scale=0.5]{visualize/linear-reg01.png}\end{center}
+\end{frame}
+
+\begin{frame}{Technologies used}
+\begin{columns}[T,onlytextwidth]
+    \column{0.33\textwidth}
+      \includegraphics[scale=0.3]{assets/python.png}
+      
+
+    \column{0.33\textwidth}
+     
+
+    \column{0.33\textwidth}
+     \includegraphics[scale=0.5]{assets/scikit-learn.png}
+\end{columns}
+
+\vspace{5mm} %5mm vertical space
+
+\begin{columns}[T,onlytextwidth]
+    \column{0.33\textwidth}
+      \includegraphics[scale=0.1]{assets/tkinter.png}
+
+    \column{0.66\textwidth}
+     \includegraphics[scale=0.35]{assets/matplotlib.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Implementation}
+   \huge\begin{center}Demo\end{center}
 \end{frame}
 
 \begin{frame}{Visualizing the solution}
-  \begin{center}\includegraphics[scale=0.5]{linear-reg02.png}\end{center}
+  \begin{center}\includegraphics[scale=0.5]{visualize/linear-reg02.png}\end{center}
 \end{frame}
 
 \section{Conclusion}
 
 \begin{frame}{Summary}
 
-  Get the source of this theme and the demo presentation from
+  Get this presentation and the code from
 
   \begin{center}\url{github.com/xR86/ml-stuff/tree/master/labs-machine-learning/implementations}\end{center}
 

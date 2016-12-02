@@ -26,14 +26,17 @@ while True:
 '''
 
 # Alternative 2 -> try-catch with signal capturing
+# possible issue in 2.7: https://mail.python.org/pipermail/python-list/2015-September/696407.html
 import signal,sys,time
 terminate = False
 
 def signal_handling(signum,frame):
-	global terminate
-	terminate = True
+	#global terminate
+	#terminate = True
+	print('You pressed Ctrl+C!')
+	sys.exit(0)
 
-signal.signal(signal.SIGINT,signal_handling) 
+signal.signal(signal.SIGINT,signal_handling)
 
 while True:
 	c, addr = s.accept()		# Establish connection with client.

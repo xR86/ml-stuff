@@ -15,3 +15,14 @@ while True:
         except KeyboardInterrupt:
             print 'Resuming...'
             continue
+
+'''
+import errno
+
+try:
+    # do something
+    result = conn.recv(bufsize)
+except socket.error as (code, msg):
+    if code != errno.EINTR:
+        raise
+'''

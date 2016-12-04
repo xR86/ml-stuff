@@ -12,8 +12,8 @@ labs-AI/hw-lab7/*.zip
 labs-AI/hw-lab7/stanford-corenlp/*
 
 #labs-machine-learning
-labs-machine-learning/implementations/ID3-car*
-labs-machine-learning/implementations/ID3-data.txt
+labs-machine-learning/implementations/1-ID3/ID3-car*
+labs-machine-learning/implementations/1-ID3/ID3-data.txt
 
 #labs-neural-networks
 labs-neural-networks/hw-lab4/diff.txt

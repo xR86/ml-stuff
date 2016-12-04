@@ -1,10 +1,13 @@
+# ml-stuff
+machine learning, AI, deep learning stuff
 
 ## TODO:
-+ Linear regression - import CMU dataset
-+ Linear regression - extend GUI (checkboxes for train/test data)
-+ Linear regression - solve CMU problem
++ [x] Linear regression - import CMU dataset
++ [ ] Linear regression - extend GUI (checkboxes for train/test data)
++ [ ] Linear regression - solve CMU problem
 
 ## Implementations
+
 
 - Linear regression - used Scikit
 

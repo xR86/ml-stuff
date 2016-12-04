@@ -9,17 +9,31 @@ matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 from matplotlib.figure import Figure
 import matplotlib.animation as animation
-#from matplotlib import style
+from matplotlib import style #isn't by default in Ubuntu 14
 
 import Tkinter as tk
 import ttk
 
+import time
+t0 = time.clock()
 
 LARGE_FONT= ("Verdana", 12)
-#style.use("ggplot")
+style.use("ggplot") #isn't by default in Ubuntu 14
 
 f = Figure(figsize=(5,5), dpi=100)
 a = f.add_subplot(111)
+
+
+class DrawHandler:
+    def __init__(self, canvas):
+        self.canvas = canvas
+        self.cid = canvas.mpl_connect('draw_event', self) # button_release_event
+
+    def __call__(self, event):
+        global t0
+        print('draw', event)
+        print('\t' + str(time.clock() - t0) + ' s')
+        t0 = time.clock()
 
 
 def animate(i):
@@ -78,11 +92,11 @@ class DataClient(tk.Tk):
 
         self.frames = {}
 
-        frame = PageThree(container, self)
-        self.frames[PageThree] = frame
+        frame = MainFrame(container, self)
+        self.frames[MainFrame] = frame
         frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame(PageThree)
+        self.show_frame(MainFrame)
 
     def show_frame(self, cont):
 
@@ -90,7 +104,7 @@ class DataClient(tk.Tk):
         frame.tkraise()
 
 
-class PageThree(tk.Frame):
+class MainFrame(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -119,7 +133,10 @@ class PageThree(tk.Frame):
         toolbar.update()
         canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
+        draw_handler = DrawHandler(canvas)
+
+
 
 app = DataClient()
-ani = animation.FuncAnimation(f, animate, frames=20, interval=1000)
+ani = animation.FuncAnimation(f, animate, frames=20, interval=1000, repeat=False) #, repeat_delay=4000
 app.mainloop()

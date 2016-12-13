@@ -48,3 +48,6 @@ while True:
 	if terminate:
 		print "Graceful shutdown ..."
 		break
+
+#incearca socket.settimeout(...) - daca nu trimite in x secunde, atunci inchide ...
+# ctrl + break -> sigkill

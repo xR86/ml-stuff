@@ -76,7 +76,7 @@ plt.plot(diabetes_X_test, regr.predict(diabetes_X_test), color='blue',
 
 prediction = regr.predict(diabetes_X_test)
 #prediction = prediction[:]
-print 'Haoleo, prediction #### ia sa-ti citeasca baba in regresia liniara !!!', prediction
+print prediction
 print "Length !", len(diabetes_X_test)
 for i in range(len(diabetes_X_test)):
 	#print diabetes_X_test[i][0]

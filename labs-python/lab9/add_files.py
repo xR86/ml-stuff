@@ -1,9 +1,7 @@
-
 import sqlite3
 conn = sqlite3.connect('example.db')
 
 c = conn.cursor()
-
 
 
 import os
@@ -53,8 +51,6 @@ def get_dir_data(dir_path):
 		id_file += 1
 
 
-		
-	
 get_dir_data('./')
 
 # Save (commit) the changes

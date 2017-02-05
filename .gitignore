@@ -4,6 +4,9 @@
 **/.idea/*
 **/__pycache__/*
 
+# Ignore these tags
+**/new_*
+
 #labs-AI
   #lab1
 labs-AI/hw-lab1/aiml/*

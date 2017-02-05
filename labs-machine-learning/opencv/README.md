@@ -2,6 +2,7 @@
 machine learning, AI, deep learning stuff
   
   
+Available frameworks: [opencv-python](http://docs.opencv.org/3.0-beta/index.html), [skimage](http://scikit-image.org/)
 **opencv scripts** - applications of knn algorithm and similar in computer vision
 
 ### Useful: 

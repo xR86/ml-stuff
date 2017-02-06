@@ -15,3 +15,4 @@ Or, **alternatively**:
 - https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks
 - Udemy - [From 0 to 1: Learn Python Programming - Easy as Pie](https://www.udemy.com/from-0-to-1-python/)
 - Book & code - [Learn Python The Hard Way](https://learnpythonthehardway.org/book/)
+- **!! Important: ** the notebook must be trusted, in order to run it [notebook is not trusted #117](https://github.com/paulgb/runipy/issues/117)

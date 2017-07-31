@@ -9,5 +9,10 @@ machine learning, AI, deep learning stuff
 - Check [jupyter-intro folder](https://github.com/xR86/ml-stuff/tree/master/jupyter-intro)
 
 ### Structure:
-+ `implementations/` - implementations of the algorithms presented at course
++ implementations of the algorithms presented at course
 + `opencv/` - image recognition programs
+
+## Implementations
+- data structrure for ID3 
+- **Linear regression** - used Scikit
+- visualizer for the linear regression dataset from CMU, and the output of the algorithm

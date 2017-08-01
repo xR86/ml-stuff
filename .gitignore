@@ -13,6 +13,7 @@ labs-AI/hw-lab1/aiml/*
 !labs-AI/hw-lab1/aiml/lab1-chat.aiml
 labs-AI/hw-lab7/*.zip
 labs-AI/hw-lab7/stanford-corenlp/*
+labs-AI/lisp/
 
 #labs-machine-learning
 labs-machine-learning/ID3/ID3-car*

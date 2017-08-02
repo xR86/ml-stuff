@@ -7,6 +7,8 @@
 # Ignore these tags
 **/new_*
 
+kaggle/Iris.csv
+
 #labs-AI
   #lab1
 labs-AI/hw-lab1/aiml/*

@@ -1,0 +1,4 @@
+
+# Ignore data (too much space/text)
+*.csv
+*.zip

@@ -2,3 +2,5 @@
 # Ignore data (too much space/text)
 *.csv
 *.zip
+word2vec.py
+NeuralNetworks.ipynb

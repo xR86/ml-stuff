@@ -4,5 +4,8 @@
 **/.idea/*
 **/__pycache__/*
 
+# Ignore compiled
+*.pyc
+
 # Ignore these tags
 **/new_*

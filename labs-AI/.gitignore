@@ -1,8 +1,12 @@
 
 #labs-AI
-  #lab1
+hw-lab1/data/*
 hw-lab1/aiml/*
 !hw-lab1/aiml/lab1-chat.aiml
+
+hw-lab3/output.txt
+
 hw-lab7/*.zip
 hw-lab7/stanford-corenlp/*
+
 lisp/

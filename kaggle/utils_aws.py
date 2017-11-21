@@ -21,8 +21,9 @@ class AWSSync:
 		print('\t__root      = %s' % self.__root)
 		print('\t__s3_client = %s' % self.__s3_client)
 	
+	# Sync functions
 	def sync_notebook_s3(self, filenames, update=False):
-		s3_path = [self.__root + fn[i] for i in range(len(fn))]
+		s3_path = [self.__root + filenames[i] for i in range(len(filenames))]
 		# for i in range(len(filenames)):
 		#     s3_path.append(self.__root + filenames[i])
 		
@@ -43,6 +44,36 @@ class AWSSync:
 				# add tqdm
 				print('File doesn\'t exist, Uploading %s...' % s3_path[i])
 				self.__s3_client.upload_file(filenames[i], self.__bucket, s3_path[i])
+
+	# Down/Up functions
+	def file_download(self, fd_key, fd_fname):
+		# print('Downloading file from S3 !')
+		file_obj = s3_client.get_object(Bucket=self.__bucket, Key=fd_key)
+		file_size = file_obj['ContentLength']#.content_length
+		print('File size is: %s' % file_size)
+		print(convert_size1(int(file_size)))
+
+		from pathlib import Path
+
+		if not Path(fd_fname).is_file():
+			# slow, inefficient
+			# file = response["Body"]
+			# data = file.read().decode("utf-8")
+
+			with tqdm(total=file_size, unit='B', unit_scale=True, desc=fd_fname) as t:
+				s3_client.download_file(\
+					Filename=fd_fname,\
+					Bucket=self.__bucket,\
+					Key=fd_key,\
+					Callback=hook(t))
+
+	def stat_s3_file(self, fd_key, fd_fname):
+		obj = self.__s3_client.get_object(Bucket=self.__bucket, Key=fd_key)
+		print(type(obj))
+		print(sys.getsizeof(obj))
+		print('---')
+		print(obj['Body'][:5])
+
 
 
 # functions that could be runned separately
@@ -74,9 +105,6 @@ def file_download(fd_bucket, fd_key, fd_fname):
 			Callback=hook(t))
 
 
-
-
-
 if __name__ == "__main__":
 	ws = AWSSync()
 
@@ -94,4 +122,3 @@ if __name__ == "__main__":
 		aws_secret_access_key = '' )
 
 	file_download(fd_bucket='datatest', fd_key='DS/2017.csv', fd_fname='2017.csv')
-

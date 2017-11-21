@@ -1,4 +1,15 @@
 
+
+# Ideally, selected features should be enumerated in markdown
+# ___________
+# |_md_______|
+# | feature1 |
+# | `id`     |
+# | feature2 |
+# | `...`    |
+# |__________|
+
+
 keep_this = """
 Feature 1
 Feature 2  

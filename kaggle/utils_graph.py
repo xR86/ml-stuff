@@ -6,6 +6,7 @@
 # https://gist.github.com/chebee7i/4041f848ee2710d500e6
 
 from IPython.display import display, HTML
+from PIL import Image
 
 
 # Create a list of colors (from Tableau, iWantHue or coolors)
@@ -34,6 +35,16 @@ def jp_display_color_palette(colors=color_blind_10):
 					'); display: inline-block; padding: 2rem; margin: 0.1rem; border-radius: 5%">' + item + '</div>'
 	display(HTML(col_html))
 	#return True
+
+def compare_graphs(img1, img2, alpha = 0.3):
+	# img1 = 'fig_sales_price.png'
+	background = Image.open(img1)
+	foreground = Image.open(img2)
+
+	out = Image.blend(background, foreground, alpha)
+	out.show()
+	#background.paste(foreground, (0, 0), foreground)
+	#background.show()
 
 
 if __name__ == '__main__':

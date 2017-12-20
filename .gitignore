@@ -9,3 +9,6 @@
 
 # Ignore these tags
 **/new_*
+
+# Ignore artifacts
+**/artif_*

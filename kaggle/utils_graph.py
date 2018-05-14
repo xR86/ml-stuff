@@ -8,6 +8,9 @@
 from IPython.display import display, HTML
 from PIL import Image
 
+# optional imports, used in select functions
+# import glob
+# import random
 
 # Create a list of colors (from Tableau, iWantHue or coolors)
 color_blind_10 = {
@@ -35,6 +38,45 @@ def jp_display_color_palette(colors=color_blind_10):
 					'); display: inline-block; padding: 2rem; margin: 0.1rem; border-radius: 5%">' + item + '</div>'
 	display(HTML(col_html))
 	#return True
+
+# TODO: should include base64 encode
+def jp_display_img(path, height):
+	"""Display image as HTML with defined height.
+
+	# >>> img_display('path/to/img.png', 20)
+	"""
+	import random
+
+	# add random number to path string in order to prevent browser caching
+	# in the event of future updates to the image
+	cnt = random.randint(0, 2e8)
+	path += '?' + str(cnt)
+
+	if height:
+		display(HTML('<img src="%s" alt="Display image" style="height: %srem">' % (path, height)))
+	else:
+		display(HTML('<img src="%s" alt="Display image">' % path))
+
+def jp_display_img_mult(path_lst, height):
+	"""Display multiple images as HTML based on regex/exact match on path and defined height
+
+	# >>> jp_display_img_mult('path/to/imgs_*.jpg', 10)
+	"""
+	import glob
+	import random
+
+	path_lst = glob.glob(path_lst)
+
+	html = ''
+	for path in path_lst:
+		cnt = random.randint(0, 2e8)
+		path += '?' + str(cnt)
+		html += '<img src="%s" \
+			alt="Display image" style="\
+				height: %srem; display:inline-block; padding:1px;margin-top:0;"\
+			>' % (path, height)
+
+	display(HTML(html))
 
 def compare_graphs(img1, img2, alpha = 0.3):
 	# img1 = 'fig_sales_price.png'

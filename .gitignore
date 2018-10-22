@@ -15,3 +15,6 @@ kaggle/modele.md
 
 # Ignore artifacts
 **/artif_*
+
+# Ignore data
+**/data

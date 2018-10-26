@@ -1,8 +1,11 @@
 # ml-stuff
 machine learning, AI, deep learning stuff
 
-## Iris Species
+## Enron emails dataset ![](http://progressed.io/bar/10)
 
-Dataset here: [kaggle.com/uciml/iris](https://www.kaggle.com/uciml/iris)
+Competition here: [kaggle.com/c/nyc-taxi-trip-duration](https://www.kaggle.com/c/nyc-taxi-trip-duration)
   
-For now, I have `Simple analysis` nb with various analysis methods (exported from: [kaggle.com/danalexandru/simple-analysis-of-iris-dataset/](https://www.kaggle.com/danalexandru/simple-analysis-of-iris-dataset/)).
+
+|    Notebook            |         Link                   |    nbviewer    |
+| ---------------------  | -------------------------------- | -------------- | 
+| PrimerStatistics.ipynb | [./PrimerStatistics.ipynb](https://github.com/xR86/ml-stuff/blob/master/kaggle/nyc-taxi-trip-duration/PrimerStatistics.ipynb)  |  [nbviewer link](https://nbviewer.jupyter.org/github/xR86/ml-stuff/blob/master/kaggle/nyc-taxi-trip-duration/PrimerStatistics.ipynb)  |

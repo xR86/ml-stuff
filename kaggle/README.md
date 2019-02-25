@@ -9,6 +9,7 @@ machine learning, AI, deep learning stuff
 | dataquest_us_births    | ![](http://progressed.io/bar/5)    |  counts, relative percent change                  |
 | [enron-email](https://www.kaggle.com/wcukierski/enron-email-dataset) | ![](http://progressed.io/bar/30)   |  smtp metadata, wordcloud, sentiment analysis  |
 | [iris](https://www.kaggle.com/uciml/iris) | ![](http://progressed.io/bar/10)   |  stats, 2D correlation, 3D correlation, scatterplots|
+| [machine-learning-with-a-heart](https://www.drivendata.org/competitions/54/machine-learning-with-a-heart/page/109/) | ![](http://progressed.io/bar/15) | univariate, multivariate analysis |
 | [nyc-taxi-trip-duration](https://www.kaggle.com/c/nyc-taxi-trip-duration) | ![](http://progressed.io/bar/10)   |  scatterplot, hexbin, log hexbin                       |
 
 

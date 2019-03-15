@@ -6,7 +6,7 @@ import zmq
 from utils import convert_size, dump_to_csv, parseSize, row_print, utf8len
 
 
-def zeromq_server():
+def zeromq_server(lim = '10MB', rounds = 0):
 	context    = zmq.Context()
 	subscriber = context.socket(zmq.SUB)
 	subscriber.connect("tcp://localhost:5563")
@@ -36,12 +36,16 @@ def zeromq_server():
 		# 	))
 
 		if data == b'END':
-			dump_to_csv('server', 'ZeroMQ', 'localhost', 'single', 'single node', row_data)
-			sys.exit()
+			dump_to_csv('server', 'ZeroMQ', rounds, 'localhost', 'single', 'single node', row_data)
+			# sys.exit()
+			break
 
 	subscriber.close()
 	context.term()
 
 
 if __name__ == "__main__":
-	zeromq_server()
+	# zeromq_server(rounds = 1)
+
+	for i in range(3):
+		zeromq_server(rounds = i + 1)

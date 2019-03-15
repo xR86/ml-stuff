@@ -2,7 +2,7 @@ import socket
 import sys
 
 
-def tcp_client_single_node(lim='10 MB'):
+def tcp_client_single_node(lim='10 MB', rounds = 0):
 	TCP_IP = 'localhost'
 	TCP_PORT = 10000
 
@@ -32,4 +32,7 @@ def tcp_client_single_node(lim='10 MB'):
 
 
 if __name__ == '__main__':
-	tcp_client_single_node()
+	tcp_client_single_node(rounds = 1)
+
+	# for i in range(3)
+	# 	tcp_client_single_node(rounds = i+1)

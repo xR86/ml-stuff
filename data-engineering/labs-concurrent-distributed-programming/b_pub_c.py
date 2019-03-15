@@ -7,7 +7,7 @@ import zmq
 from utils import convert_size, dump_to_csv, parseSize, row_print, utf8len
 
 
-def zeromq_client(lim='10 MB'):
+def zeromq_client(lim='10 MB', rounds = 0):
 	context   = zmq.Context()
 	publisher = context.socket(zmq.PUB)
 	publisher.bind("tcp://*:5563")
@@ -36,8 +36,9 @@ def zeromq_client(lim='10 MB'):
 				publisher.send_multipart([b'emails', line_bytes])
 			else:
 				publisher.send_multipart([b'emails', 'END'.encode('utf-8')])
-				dump_to_csv('client', 'ZeroMQ', 'localhost', 'single', 'single node', row_data)
-				sys.exit()
+				dump_to_csv('client', 'ZeroMQ', rounds, 'localhost', 'single', 'single node', row_data)
+				# sys.exit()
+				break
 
 			print('ZeroMQ - single node - %s - %s - %s messages' % (
 				(dt.datetime.now() - client_start),
@@ -50,4 +51,7 @@ def zeromq_client(lim='10 MB'):
 
 
 if __name__ == "__main__":
-	zeromq_client()
+	# zeromq_client(rounds = 1)
+
+	for i in range(3):
+		zeromq_client(rounds = i + 1)

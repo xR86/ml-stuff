@@ -24,11 +24,11 @@ def parseSize(size):
 	return int(float(number)*units[unit])
 
 
-def dump_to_csv(suffix, protocol, location='localhost', setup='single', mode='single', row_data=['', '', '']):
-	with open('data/metadata_%s_%s.csv' % (suffix, protocol), 'w+') as md:
-		md.write('Protocol,Location,Setup,Mode,Time,Size(MB),Count\n')
+def dump_to_csv(suffix, protocol, rounds, location='localhost', setup='single', mode='single', row_data=['', '', '']):
+	with open('data/metadata_%s_%s_r%s.csv' % (suffix, protocol, rounds), 'w+') as md:
+		md.write('Protocol,Type,Location,Setup,Mode,Rounds,Time,Size(MB),Count\n')
 		md.write(
-			'%s,%s,%s,%s' % (protocol, location, setup, mode) + \
+			'%s,%s,%s,%s,%s,%s' % (protocol, suffix, location, setup, mode, rounds) + \
 			',%s,%s,%s\n' % row_data)
 
 # import signal

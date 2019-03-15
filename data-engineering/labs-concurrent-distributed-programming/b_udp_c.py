@@ -4,7 +4,7 @@ import sys
 from utils import convert_size, dump_to_csv, parseSize, row_print, utf8len
 
 
-def udp_client_single_node(lim='10 MB'):
+def udp_client_single_node(lim='10 MB', rounds=0):
 	UDP_IP = '127.0.0.1'
 	UDP_PORT = 5005
 
@@ -26,8 +26,8 @@ def udp_client_single_node(lim='10 MB'):
 			else:
 				sock.sendto('END'.encode('utf-8'), (UDP_IP, UDP_PORT))
 
-				dump_to_csv('client', 'UDP', 'localhost', 'single', 'single node', row_data)
-				sys.exit()
+				dump_to_csv('client', 'UDP', rounds, 'localhost', 'single', 'single node', row_data)
+				break
 
 			cnt += 1
 			running_bytes += utf8len(line)
@@ -41,4 +41,7 @@ def udp_client_single_node(lim='10 MB'):
 
 
 if __name__ == '__main__':
-	udp_client_single_node()
+	# udp_client_single_node(rounds = 1)
+
+	for i in range(3):
+		udp_client_single_node(rounds=i+1)

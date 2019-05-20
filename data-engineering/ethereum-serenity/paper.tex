@@ -1,0 +1,256 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+\documentclass[runningheads]{llncs}
+%
+
+\usepackage{wrapfig,floatrow}
+
+% used for FloatBarrier
+\usepackage{placeins}
+
+\usepackage{minted}
+
+\usepackage{soul} % color, soul - required for text highlighting
+\usepackage{xcolor} %% http://www.ctan.org/pkg/xcolor
+\usepackage{graphicx}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+
+\usepackage{hyperref}
+% linkcolor=blue!50!red,
+\hypersetup{
+  colorlinks=true,
+  linkcolor=green!80,
+  urlcolor=blue
+}
+
+% If you use the hyperref package, please uncomment the following line
+% to display URLs in blue roman font according to Springer's eBook style:
+% \renewcommand\UrlFont{\color{blue}\rmfamily}
+
+\usepackage{bibnames}
+
+
+
+
+\begin{document}
+%
+\title{A review of Ethereum Serenity}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Dan Alexandru}
+%
+% \authorrunning{Dan Alexandru et al.}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{Department of Computer Science, “Al.I.Cuza” University of Iasi, Romania}
+%
+\maketitle              % typeset the header of the contribution
+%
+\begin{abstract}
+This review intends to delve into how Ethereum was conceived, what it accomplished and where it failed, and especially how Ethereum Serenity (version 2.0) will impact both the market and distributed computing.
+
+\keywords{Blockchain \and Ethereum \and Ethereum 2.0 \and Ethereum Serenity \and Distributed Computing}
+\end{abstract}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Ethereum was introduced by Vitalik Buterin in late 2013 in a whitepaper called "Ethereum White Paper - A next generation smart contract \& decentralized application platform" \cite{ETHwhitepaper}.
+
+% The Blockchain Review Whitepaper analysis \cite{ETHwhitepaperSimple}
+
+Releases started in May 2015 with "Olympic testnet" \cite{ETHreleases}, considered "Prerelease step 0", followed closely by the first official release codenamed "Frontier" in July. It is currently at "Release Step 3.1: Metropolis phase 2: Constantinople" (though the precise release step 3.x might be further incremented at the date of the writing). A well rounded synthesis of each phase and what it improved can be found on Coinmama \cite{CoinmamaETHhistory}.
+
+
+\FloatBarrier
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ethereum - The Big Picture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Concepts such as smart contracts (Fig. \ref{fig:Features-1}) and descentralized apps (Fig. \ref{fig:Features-2} and \ref{fig:Features-3}), while being developed (mostly) independently from Ethereum,  have been popularized by it. Ethereum was the starting point for many ICOs, exceeding the competitors by a great margin (\cite{ICOstats}), leading to a surging interest in descentralized apps (Dapps) starting from 2017 based on Google Trends (\cite{GTrends}).
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{assets/smart-contracts-infographic.jpg}
+    \caption[Smart Contracts]{Smart Contracts as described in the BlockGeeks guide \cite{BGethGuide}.}
+    \label{fig:Features-1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{assets/dapp-infographic.png}
+    \caption[Descentralized Apps]{Descentralized Apps (DApps) as described in the BlockGeeks guide \cite{BGethGuide}.}
+    \label{fig:Features-2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{assets/dapp-infographic-1.png}
+    \caption[Descentralized Apps]{Descentralized Apps (DApps) as described in the BlockGeeks guide \cite{BGethGuide}.}
+    \label{fig:Features-3}
+\end{figure}
+
+
+\subsection{Web 3.0}
+
+Héctor Ugarte proposes linked blockchain data as a solution for semantic data, descentralized storage and compute, that is impervious to the vulnerabilities of DNS as shown by the Mirai botnet attack \cite{Ugarte17web3}.
+
+As such, he has shown that we already some solutions based on blockchain: interledger protocol (ILP) for exchanges between various coins, interoperability between public and private blockchains (Polkadot), descentralized DNS (Namecoin) with authentication based on WebID, JWT and IPFS for storing user profiles.
+
+
+\FloatBarrier
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ethereum 1.0 Drawbacks}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Ethereum promised the advent of Web 3.0, but failed due to scalability issues, yielding a small bandwith, high latency (due to problematic Proof of Stake and scale), low scalability (due to lack of sharding and high compute cost) and high costs for most simple scenarios for Web 2.0.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.35]{assets/ethereum-drawback-scalability.png}
+    \caption[Ethereum Drawbacks]{Previous versions of ETH are much slower than Web 2.0 for a fraction of the DAU (Daily Active Users) \cite{ETH1failure}. The article quoted claims that the results are at least 10x worse, based on this figure and subsequent experiments.}
+    \label{fig:Serenity-1}
+\end{figure}
+
+Furthermore, Dapps failed to deliver economic value compared to wealth transfer, driving their fee to less than 0.1\$ per transaction. Even those Dapps that survived this have had a major discrepancy between market valuation and collected fiat currency (as shown in the article, one of the most popular descentralized exchange protocols, 0x, although being evaluated at \$160M, has only collected 2000\$).
+
+\FloatBarrier
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ethereum Serenity}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Rumours about a newer and better version of Ethereum have been circulated mostly around Q1 2018 and Serenity was officially announced in Q3 2018 during the keynote held by Vitalik Buterin at Devcon4 ("ETH 2.0 - The road to scaling Ethereum" \cite{KeynotePrague2018}).
+
+
+\subsection{Serenity Phases}
+
+The roadmap (Fig. \ref{fig:Serenity-1}) has been revealed (which historically is somewhat respected, even though sometimes is delayed), and the evolution of ETH 2.0 will be comprised of the following phases (as detailed in the user-maintained documentation in \cite{ETHphases}):
+\begin{itemize}
+    \item Phase 0: Beacon Chain - manages the Casper PoS (Proof of Stake) protocol for itself and all shard chains, and upon end of this phase the users could migrate from ETH 1.0 to ETH 2.0 to become validators, but the operation is final
+    \item Phase 1: Shards as data chains - comprises of periodical saving of the state of each shard ("combined data root") in the Beacon chain as a crosslink, when the Beacon chain block is finalised, that status is propagated to the shard block
+    \item Phase 2: Enable state transaction - smart contracts are reintroduced, each shard managing a eWASM-based VM (Ethereum flavoured WebAssembly virtual machine) to provide features such as accounts, contracts, and common tools being ported to eWASM such as Truffle \cite{Truffle}, a development framework for Dapps using smart contracts, and Ganache \cite{Ganache}, for a personal blockchain deployment for testing.
+    \item Phase 3: and beyond - is subject to speculation, since it will commence earliest in 2021-2022
+\end{itemize}
+
+% \FloatBarrier
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.35]{assets/SerenityRoadmap.png}
+    \caption[Ethereum Serenity Roadmap]{Ethereum Serenity (2.0) roadmap announced in Q4 2018.}
+    \label{fig:Serenity-1}
+\end{figure}
+
+While WASM has become increasingly popular for transitioning apps using transpilers such as emscripten (eg: JP Morgan's Perspective library \cite{FINOSperspective}, written in C++ and transpiled to JS, which has recently been moved as part of the Fintech Open Source Foundation),
+
+\subsection{Sharding}
+
+The blockchain technical literature proposed a derivative of the CAP theorem (even though the CAP theorem in its original form still applies to blockchain solutions \cite{CAPblockchain}), called the DCS Theorem \cite{DCStheorem}, which is composed of the following:
+\begin{itemize}
+    \item Decentralized - the solution does not possess a SPoF (Single Point of Failure)
+    \item Consensus - the solution state is determined by a consensus algorithm
+    \item Scale - the solution can handle the transactional demands
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.35]{assets/dcs-triangle.png}
+    \caption[Ethereum Serenity DCS Triangle]{DCS Triangle in Serenity's documentation \cite{DCSserenity} for sharding}
+    \label{fig:Serenity-2}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.35]{assets/serenity-phases-structure.png}
+    \caption[Ethereum Serenity Phases]{Visualization of ETH Serenity Phases made by researcher Hsiao-Wei Wang}
+    \label{fig:Serenity-3}
+\end{figure}
+
+
+
+\subsection{Proof of Stake (PoS)}
+
+
+
+
+\FloatBarrier
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Impact on software engineering}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Web 3.0 Architecture State of the Art}
+
+Assuming we start with a monolith and/or partly distributed architecture that is cloud-based, we can descentralize it in a few steps, as described in Fig \ref{fig:Serenity-3}. Most companies toting blockchain as the backbone of their apps are currently in the partly descentralized phase shown in the figure, very few apps using IPFS and even fewer ETH for compute.
+
+
+\url{https://blockgeeks.com/guides/ethereum-casper/}
+
+\url{https://medium.com/polkadot-network/wasm-on-the-blockchain-the-lesser-evil-da8d7c6ef6bd}
+
+\url{https://medium.com/@sergiibomko/full-blockchain-node-in-a-browser-via-webassembly-768b7af6a80b}
+
+\url{https://dev.to/captainsafia/why-the-heck-is-everyone-talking-about-webassembly-455a}
+
+\url{https://www.theblockcrypto.com/2018/12/18/the-ethereum-ico-where-did-all-the-tokens-go/}
+
+\url{https://www.cryptopolitan.com/secrets-to-a-successful-initial-coin-offering-ico-launch/}
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{assets/transitioning-old-apps.png}
+    \caption[Web 2.0 to 3.0 transition]{Sourced from BigChain DB (slide 6 from this presentation \cite{BigChainArch}) via this Hackernoon article\cite{web3apps}}
+    \label{fig:Serenity-3}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.2]{assets/web-3-abstracted-stack.png}
+    \caption[Web 3.0 Abstracted Stack]{A nice visualization of (part) of the current backbone of the future Web 3.0, as described by Stephen Tual \cite{web3stack}}
+    \label{fig:Serenity-3}
+\end{figure}
+
+
+% \begin{wrapfigure}{R}{0.4\textwidth}
+%   \begin{center}
+%     \includegraphics[scale=0.5]{methods-tree-01.jpg}
+% 	\caption[Memrise 1]{Memrise Home Page}
+% 	\label{fig:Memrise-1}
+%   \end{center}
+% \end{wrapfigure}
+
+\FloatBarrier
+% \smallskip\hrule\smallskip
+% \hrule\smallskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+Once the Beacon Chain launches (est. 2019) and the sharding phases 1 and 2 pass without incidents (est. 2020/2021, provided Beacon Chain is not delayed), Ethereum's potential should attain maturity.
+
+While Serenity's performance is still speculated, we should get an idea after the sharding occurs if Ethereum lives up to its mission.
+
+% \hrule\smallskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+ 
+% \pagebreak
+
+
+% \noindent
+\bibliographystyle{splncs04}
+\bibliography{resources}
+
+
+\end{document}

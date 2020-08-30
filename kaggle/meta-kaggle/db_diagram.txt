@@ -1,0 +1,397 @@
+// 
+
+Table CompetitionTags as CT {
+  Id int [pk]
+  CompetitionId int
+  TagId int
+}
+Ref: CT.CompetitionId - C.Id
+Ref: CT.TagId - T.Id
+
+Table Competitions as C {
+  Id int [pk]
+  Slug varchar
+  Title varchar
+  Subtitle varchar
+  HostSegmentTitle varchar // enum actually
+  ForumId int
+  OrganizationId int
+  CompetitionTypeId int
+  HostName varchar
+  EnabledDate timestamp
+  DeadlineDate timestamp
+  ProhibitNewEntrantsDeadlineDate timestamp
+  TeamMergerDeadlineDate timestamp
+  TeamModelDeadlineDate timestamp
+  ModelSubmissionDeadlineDate timestamp
+  FinalLeaderboardHasBeenVerified bool
+  HasKernels bool
+  OnlyAllowKernelSubmissions bool
+  HasLeaderboard bool
+  LeaderboardPercentage int
+  LeaderboardDisplayFormat int // useless ??
+  EvaluationAlgorithmAbbreviation varchar
+  EvaluationAlgorithmName varchar
+  EvaluationAlgorithmDescription varchar
+  EvaluationAlgorithmIsMax bool
+  ValidationSetName varchar
+  ValidationSetValue varchar // enum ??
+  MaxDailySubmissions int
+  NumScoredSubmissions int
+  MaxTeamSize int
+  BanTeamMergers bool
+  EnableTeamModels bool
+  EnableSubmissionModelHashes bool
+  EnableSubmissionModelAttachments bool
+  RewardType varchar
+  RewardQuantity int
+  NumPrizes int
+  UserRankMultiplier int // ??
+  CanQualifyTiers bool
+  TotalTeams int
+  TotalCompetitors int
+  TotalSubmissions int
+}
+Ref: C.ForumId - F.Id
+Ref: C.OrganizationId - O.Id
+// Ref: C.CompetitionTypeId - 
+
+Table DatasetTags as DT {
+  Id int [pk]
+  DatasetId int
+  TagId int
+}
+Ref: DT.DatasetId - D.Id
+Ref: DT.TagId - T.Id
+
+Table DatasetVersions as DVE {
+  Id int [pk]
+  DatasetId int
+  DatasourceVersionId int
+  CreatorUserId int
+  LicenseName varchar // enum ??
+  CreationDate timestamp
+  VersionNumber int
+  Title varchar
+  Slug varchar
+  Subtitle varchar
+  Description varchar
+  VersionNotes varchar
+  TotalCompressedBytes int
+  TotalUncompressedBytes int
+}
+Ref: DVE.DatasetId - D.Id
+// Ref: DVE.DatasourceVersionId - 
+Ref: DVE.CreatorUserId - U.Id
+
+Table DatasetVotes as DVO {
+  Id int [pk]
+  UserId int
+  DatasetVersionId int
+  VoteDate timestamp
+}
+Ref: DVO.UserId - U.Id
+Ref: DVO.DatasetVersionId - DVE.Id
+
+Table Datasets as D {
+  Id int [pk]
+  CreatorUserId int
+  OwnerUserId int
+  OwnerOrganizationId int
+  CurrentDatasetVersionId int
+  CurrentDatasourceVersionId int
+  ForumId int
+  Type int
+  CreationDate timestamp
+  ReviewDate timestamp
+  FeatureDate timestamp
+  LastActivityDate timestamp
+  TotalViews int
+  TotalDownloads int
+  TotalVotes int
+  TotalKernels int
+}
+Ref: D.CreatorUserId - U.Id
+Ref: D.OwnerUserId - U.Id
+Ref: D.OwnerOrganizationId - O.Id
+Ref: D.CurrentDatasetVersionId - DVE.Id
+// Ref: D.CurrentDatasourceVersionId - ??
+Ref: D.ForumId - F.Id
+
+Table Datasources as DS {
+  Id int [pk]
+  CreatorUserId int
+  CreationDate timestamp
+  Type int // useless ?
+  CurrentDatasourceVersionId int
+}
+Ref: DS.CreatorUserId - U.Id
+Ref: DS.CurrentDatasourceVersionId - DVE.Id
+
+Table ForumMessageVotes as FMV {
+  Id int [pk]
+  ForumMessageId int
+  FromUserId int
+  ToUserId int
+  VoteDate timestamp
+}
+Ref: FMV.ForumMessageId - FM.Id
+Ref: FMV.FromUserId - U.Id
+Ref: FMV.ToUserId - U.Id
+
+Table ForumMessages as FM {
+  Id int [pk]
+  ForumTopicId int
+  PostUserId int
+  PostDate timestamp
+  ReplyToForumMessageId int
+  Message varchar
+  Medal int // enum ??
+  MedalAwardDate timestamp
+}
+Ref: FM.ForumTopicId - FT.Id
+Ref: FM.PostUserId - U.Id
+Ref: FM.ReplyToForumMessageId - FM.Id
+
+Table ForumTopics as FT {
+  Id int [pk]
+  ForumId int
+  KernelId int
+  LastForumMessageId int
+  FirstForumMessageId int
+  CreationDate timestamp
+  LastCommentDate timestamp
+  Title varchar
+  IsSticky bool
+  TotalViews int
+  Score int
+  TotalMessages int
+  TotalReplies int
+}
+Ref: FT.ForumId - F.Id 
+Ref: FT.KernelId - K.Id
+Ref: FT.LastForumMessageId - FM.Id
+Ref: FT.FirstForumMessageId - FM.Id
+
+Table Forums as F {
+  Id int [pk]
+  ParentForumId int
+  Title varchar
+}
+Ref: F.ParentForumId - F.Id
+
+Table KernelLanguages as KL {
+  Id int [pk]
+  Name varchar
+  DisplayName varchar
+  IsNotebook bool
+}
+
+Table KernelTags as KT {
+  Id int [pk]
+  KernelId int
+  TagId int
+}
+Ref: KT.KernelId - K.Id
+Ref: KT.TagId - T.Id
+
+Table KernelVersionCompetitionSources as KVCS {
+  Id int [pk]
+  KernelVersionId int
+  SourceCompetitionId int
+}
+Ref: KVCS.KernelVersionId - KVE.Id
+Ref: KVCS.SourceCompetitionId - C.Id
+
+Table KernelVersionDatasetSources as KVDS {
+  Id int [pk]
+  KernelVersionId int
+  SourceDatasetVersionId int
+}
+Ref: KVDS.KernelVersionId - KVE.Id
+Ref: KVDS.SourceDatasetVersionId - DVE.Id
+
+Table KernelVersionKernelSources as KVKS {
+  Id int [pk]
+  KernelVersionId int
+  SourceKernelVersionId int
+}
+Ref: KVKS.KernelVersionId - KVE.Id
+Ref: KVKS.SourceKernelVersionId - KVE.Id
+
+Table KernelVersionOutputFiles as KVOF {
+  Id int [pk]
+  KernelVersionId int
+  FileName varchar
+  ContentLength int
+  ContentTypeExtension varchar
+  CompressionTypeExtension varchar
+}
+Ref: KVOF.KernelVersionId - KVE.Id
+
+Table KernelVersions as KVE {
+  Id int [pk]
+  ScriptId int
+  ParentScriptVersionId int
+  ScriptLanguageId int
+  AuthorUserId int
+  CreationDate timestamp
+  VersionNumber int
+  Title varchar
+  EvaluationDate timestamp
+  IsChange bool
+  TotalLines int
+  LinesInsertedFromPrevious int
+  LinesChangedFromPrevious int
+  LinesUnchangedFromPrevious int
+  LinesInsertedFromFork int
+  LinesDeletedFromFork int
+  LinesChangedFromFork int
+  LinesUnchangedFromFork int
+  TotalVotes int
+}
+Ref: KVE.ScriptId - K.Id // ??
+Ref: KVE.ParentScriptVersionId - K.Id // ??
+Ref: KVE.ScriptLanguageId - KL.Id // ??
+Ref: KVE.AuthorUserId - U.Id
+
+Table KernelVotes as KVO {
+  Id int [pk]
+  UserId int
+  KernelVersionId int
+  VoteDate timestamp
+}
+Ref: KVO.UserId - U.Id
+Ref: KVO.KernelVersionId - KVE.Id
+
+Table Kernels as K {
+  Id int [pk]
+  AuthorUserId int
+  CurrentKernelVersionId int
+  ForkParentKernelVersionId int
+  ForumTopicId int
+  FirstKernelVersionId int
+  CreationDate timestamp
+  EvaluationDate timestamp
+  MadePublicDate timestamp
+  IsProjectLanguageTemplate bool
+  CurrentUrlSlug varchar
+  Medal int //enum ??
+  MedalAwardDate timestamp
+  TotalViews int
+  TotalComments int
+  TotalVotes int
+}
+Ref: K.AuthorUserId - U.Id
+Ref: K.CurrentKernelVersionId - KVE.Id
+Ref: K.ForkParentKernelVersionId - KVE.Id
+Ref: K.ForumTopicId - FT.Id
+Ref: K.FirstKernelVersionId - KVE.Id
+
+Table Organizations as O {
+  Id int [pk]
+  Name varchar
+  Slug varchar
+  CreationDate timestamp
+  Description varchar
+}
+
+Table Submissions as S {
+  Id int [pk]
+  SubmittedUserId int
+  TeamId int
+  SourceKernelVersionId int
+  SubmissionDate timestamp
+  ScoreDate timestamp
+  IsAfterDeadline bool
+  PublicScoreLeaderboardDisplay float
+  PublicScoreFullPrecision float
+  PrivateScoreLeaderboardDisplay float
+  PrivateScoreFullPrecision float
+}
+Ref: S.SubmittedUserId - U.Id
+Ref: S.TeamId - TM.Id 
+Ref: S.SourceKernelVersionId - KVE.Id
+
+Table Tags as T {
+  Id int [pk]
+  ParentTagId int
+  Name varchar
+  Slug varchar
+  FullPath varchar
+  Description varchar
+  DatasetCount int
+  CompetitionCount int
+  KernelCount int
+}
+Ref: T.ParentTagId - T.Id
+
+Table TeamMemberships as TME {
+  Id int [pk]
+  TeamId int
+  UserId int
+  RequestDate timestamp
+}
+Ref: TME.TeamId - TM.Id
+Ref: TME.UserId - U.Id
+
+Table Teams as TM {
+  Id int [pk]
+  CompetitionId int
+  TeamLeaderId int
+  TeamName varchar
+  ScoreFirstSubmittedDate timestamp
+  LastSubmissionDate timestamp
+  PublicLeaderboardSubmissionId int
+  PrivateLeaderboardSubmissionId int
+  IsBenchmark bool
+  Medal int // enum ??
+  MedalAwardDate timestamp
+  PublicLeaderboardRank int
+  PrivateLeaderboardRank int
+}
+Ref: TM.CompetitionId - C.Id
+Ref: TM.TeamLeaderId - U.Id
+Ref: TM.PublicLeaderboardSubmissionId - S.Id
+Ref: TM.PrivateLeaderboardSubmissionId - S.Id
+
+Table UserAchievements as UA {
+  Id int [pk]
+  UserId int
+  AchievementType varchar //enum ??
+  Tier int //enum ??
+  TierAchievementDate timestamp
+  Points int
+  CurrentRanking int
+  HighestRanking int
+  TotalGold int
+  TotalSilver int
+  TotalBronze int
+}
+Ref: UA.UserId - U.Id
+
+Table UserFollowers as UF {
+  Id int [pk]
+  UserId int
+  FollowingUserId int
+  CreationDate timestamp
+}
+Ref: UF.UserId - U.Id
+Ref: UF.FollowingUserId - U.Id
+
+Table UserOrganizations as UO {
+  Id int [pk]
+  UserId int
+  OrganizationId int
+  JoinDate timestamp
+}
+Ref: UO.UserId - U.Id
+Ref: UO.OrganizationId - O.Id
+
+Table Users as U {
+  Id int [pk]
+  UserName varchar
+  DisplayName varchar
+  RegisterDate timestamp
+  PerformanceTier int //enum ??
+}
